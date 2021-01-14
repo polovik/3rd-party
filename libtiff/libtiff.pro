@@ -44,6 +44,8 @@ win32:        SOURCES += $$PWD/libtiff/tif_win32.c
 else:         SOURCES += $$PWD/libtiff/tif_unix.c
 android:      SOURCES += $$PWD/port/lfind.c
 
+DEFINES += QTIFF_COMPILE_LIBRARY
+
 win32 {
     LIBS += -L$$PWD/../zlib/lib/ -lzdll
     INCLUDEPATH += $$PWD/../zlib/include
@@ -60,3 +62,21 @@ win32 {
         system(xcopy /V /R /Y $$includeFolder\tiffvers.h $$destFolder\\include\\)
     }
 }
+
+HEADERS += \
+    libtiff/t4.h \
+    libtiff/tif_config.h \
+    libtiff/tif_config.vc.h \
+    libtiff/tif_config.wince.h \
+    libtiff/tif_dir.h \
+    libtiff/tif_fax3.h \
+    libtiff/tif_predict.h \
+    libtiff/tiff.h \
+    libtiff/tiffconf.h \
+    libtiff/tiffconf.vc.h \
+    libtiff/tiffconf.wince.h \
+    libtiff/tiffio.h \
+    libtiff/tiffio.hxx \
+    libtiff/tiffiop.h \
+    libtiff/tiffvers.h \
+    libtiff/uvcode.h

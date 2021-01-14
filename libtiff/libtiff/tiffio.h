@@ -341,10 +341,10 @@ extern  void *TIFFGetClientInfo(TIFF *, const char *);
 extern  void TIFFSetClientInfo(TIFF *, void *, const char *);
 
 extern void TIFFCleanup(TIFF* tif);
-extern void TIFFClose(TIFF* tif);
+extern QTIFF_LIB_DECL void TIFFClose(TIFF* tif);
 extern int TIFFFlush(TIFF* tif);
 extern int TIFFFlushData(TIFF* tif);
-extern int TIFFGetField(TIFF* tif, uint32 tag, ...);
+extern QTIFF_LIB_DECL int TIFFGetField(TIFF* tif, uint32 tag, ...);
 extern int TIFFVGetField(TIFF* tif, uint32 tag, va_list ap);
 extern int TIFFGetFieldDefaulted(TIFF* tif, uint32 tag, ...);
 extern int TIFFVGetFieldDefaulted(TIFF* tif, uint32 tag, va_list ap);
@@ -402,30 +402,30 @@ extern int TIFFCreateDirectory(TIFF*);
 extern int TIFFCreateCustomDirectory(TIFF*,const TIFFFieldArray*);
 extern int TIFFCreateEXIFDirectory(TIFF*);
 extern int TIFFLastDirectory(TIFF*);
-extern int TIFFSetDirectory(TIFF*, uint16);
+extern QTIFF_LIB_DECL int TIFFSetDirectory(TIFF*, uint16);
 extern int TIFFSetSubDirectory(TIFF*, uint64);
 extern int TIFFUnlinkDirectory(TIFF*, uint16);
-extern int TIFFSetField(TIFF*, uint32, ...);
+extern QTIFF_LIB_DECL int TIFFSetField(TIFF*, uint32, ...);
 extern int TIFFVSetField(TIFF*, uint32, va_list);
 extern int TIFFUnsetField(TIFF*, uint32);
-extern int TIFFWriteDirectory(TIFF *);
+extern QTIFF_LIB_DECL int TIFFWriteDirectory(TIFF *);
 extern int TIFFWriteCustomDirectory(TIFF *, uint64 *);
 extern int TIFFCheckpointDirectory(TIFF *);
 extern int TIFFRewriteDirectory(TIFF *);
 
 #if defined(c_plusplus) || defined(__cplusplus)
-extern void TIFFPrintDirectory(TIFF*, FILE*, long = 0);
-extern int TIFFReadScanline(TIFF* tif, void* buf, uint32 row, uint16 sample = 0);
-extern int TIFFWriteScanline(TIFF* tif, void* buf, uint32 row, uint16 sample = 0);
-extern int TIFFReadRGBAImage(TIFF*, uint32, uint32, uint32*, int = 0);
-extern int TIFFReadRGBAImageOriented(TIFF*, uint32, uint32, uint32*,
+extern QTIFF_LIB_DECL void TIFFPrintDirectory(TIFF*, FILE*, long = 0);
+extern QTIFF_LIB_DECL int TIFFReadScanline(TIFF* tif, void* buf, uint32 row, uint16 sample = 0);
+extern QTIFF_LIB_DECL int TIFFWriteScanline(TIFF* tif, void* buf, uint32 row, uint16 sample = 0);
+extern QTIFF_LIB_DECL int TIFFReadRGBAImage(TIFF*, uint32, uint32, uint32*, int = 0);
+extern QTIFF_LIB_DECL int TIFFReadRGBAImageOriented(TIFF*, uint32, uint32, uint32*,
     int = ORIENTATION_BOTLEFT, int = 0);
 #else
-extern void TIFFPrintDirectory(TIFF*, FILE*, long);
-extern int TIFFReadScanline(TIFF* tif, void* buf, uint32 row, uint16 sample);
-extern int TIFFWriteScanline(TIFF* tif, void* buf, uint32 row, uint16 sample);
-extern int TIFFReadRGBAImage(TIFF*, uint32, uint32, uint32*, int);
-extern int TIFFReadRGBAImageOriented(TIFF*, uint32, uint32, uint32*, int, int);
+extern QTIFF_LIB_DECL void TIFFPrintDirectory(TIFF*, FILE*, long);
+extern QTIFF_LIB_DECL int TIFFReadScanline(TIFF* tif, void* buf, uint32 row, uint16 sample);
+extern QTIFF_LIB_DECL int TIFFWriteScanline(TIFF* tif, void* buf, uint32 row, uint16 sample);
+extern QTIFF_LIB_DECL int TIFFReadRGBAImage(TIFF*, uint32, uint32, uint32*, int);
+extern QTIFF_LIB_DECL int TIFFReadRGBAImageOriented(TIFF*, uint32, uint32, uint32*, int, int);
 #endif
 
 extern int TIFFReadRGBAStrip(TIFF*, uint32, uint32 * );
@@ -439,7 +439,7 @@ extern TIFF* TIFFOpen(const char*, const char*);
 extern TIFF* TIFFOpenW(const wchar_t*, const char*);
 # endif /* __WIN32__ */
 extern TIFF* TIFFFdOpen(int, const char*, const char*);
-extern TIFF* TIFFClientOpen(const char*, const char*,
+extern QTIFF_LIB_DECL TIFF* TIFFClientOpen(const char*, const char*,
 	    thandle_t,
 	    TIFFReadWriteProc, TIFFReadWriteProc,
 	    TIFFSeekProc, TIFFCloseProc,
@@ -455,7 +455,7 @@ extern TIFFErrorHandler TIFFSetErrorHandler(TIFFErrorHandler);
 extern TIFFErrorHandlerExt TIFFSetErrorHandlerExt(TIFFErrorHandlerExt);
 extern TIFFErrorHandler TIFFSetWarningHandler(TIFFErrorHandler);
 extern TIFFErrorHandlerExt TIFFSetWarningHandlerExt(TIFFErrorHandlerExt);
-extern TIFFExtendProc TIFFSetTagExtender(TIFFExtendProc);
+extern QTIFF_LIB_DECL TIFFExtendProc TIFFSetTagExtender(TIFFExtendProc);
 extern uint32 TIFFComputeTile(TIFF* tif, uint32 x, uint32 y, uint32 z, uint16 s);
 extern int TIFFCheckTile(TIFF* tif, uint32 x, uint32 y, uint32 z, uint16 s);
 extern uint32 TIFFNumberOfTiles(TIFF*);
@@ -539,7 +539,7 @@ typedef	struct {
 	char	*field_name;		/* ASCII name */
 } TIFFFieldInfo;
 
-extern int TIFFMergeFieldInfo(TIFF*, const TIFFFieldInfo[], uint32);
+extern QTIFF_LIB_DECL int TIFFMergeFieldInfo(TIFF*, const TIFFFieldInfo[], uint32);
         
 #if defined(c_plusplus) || defined(__cplusplus)
 }

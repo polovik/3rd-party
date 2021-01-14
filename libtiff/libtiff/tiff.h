@@ -29,6 +29,14 @@
 
 #include "tiffconf.h"
 
+#if defined(QTIFF_COMPILE_LIBRARY)
+#  define QTIFF_LIB_DECL Q_DECL_EXPORT
+#elif defined(QCUSTOMPLOT_USE_LIBRARY)
+#  define QTIFF_LIB_DECL Q_DECL_IMPORT
+#else
+#  define QTIFF_LIB_DECL
+#endif
+
 /*
  * Tag Image File Format (TIFF)
  *
